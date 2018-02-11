@@ -5,6 +5,8 @@
  * Date: 2018/02/06
  * Time: 3:35
  */
+
+$string = 'Tom';
 ?>
 
 <html>
@@ -14,6 +16,7 @@
     </head>
     <body>
         <p><?php echo "Hello, I'm a PHP!"; ?></p>
-        <?php echo var_dump($_SERVER); ?>
+        <p><?php echo 'hi, $string ¥n'; ?></p>
+        <p><?php echo "hi, $string \n"; ?></p>
     </body>
 </html>
