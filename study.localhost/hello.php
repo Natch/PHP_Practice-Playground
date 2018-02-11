@@ -8,11 +8,12 @@
 ?>
 
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Hello, World</title>
-</head>
-<body>
-    <p><?php echo "Hello, I'm a PHP!"; ?></p>
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Hello, World</title>
+    </head>
+    <body>
+        <p><?php echo "Hello, I'm a PHP!"; ?></p>
+        <?php echo var_dump($_SERVER); ?>
+    </body>
 </html>
