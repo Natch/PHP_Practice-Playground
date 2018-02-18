@@ -6,8 +6,22 @@
  * Time: 3:35
  */
 
-$name = 'Tom';
-$age = 15;
+$fruits = array(
+  'apple' => array(
+          'price' => 100,
+          'count' => 2,
+  ),
+
+  'banana' => array(
+          'price' => 80,
+          'count' => 5,
+  ),
+
+  'orange' => array(
+          'price' => 90,
+          'count' => 3,
+  ),
+);
 ?>
 
 <html>
@@ -16,16 +30,8 @@ $age = 15;
         <title>Hello, World</title>
     </head>
     <body>
-        <p><?php echo "Hello, I'm a PHP!"; ?></p>
-        <p><?php echo 'hi, $name ¥n'; ?></p>
-        <p><?php echo "hi, $name \n"; ?></p>
-        <?php
-        $foo = <<<EOI
-        ヒアドキュメントでは、このように
-        複数行にわたる文章を表記できる。
-        $name の年齢は $age 歳だ。
-EOI;
-        echo "$foo"?>
-
+        <?php foreach ($fruits as $name => $value) { ?>
+        <?php echo "$name は1つ{$value['price']}円で{$value['count']}個です",PHP_EOL; ?><br>
+        <?php } ?>
     </body>
 </html>
