@@ -6,22 +6,16 @@
  * Time: 3:35
  */
 
-$fruits = array(
-  'apple' => array(
-          'price' => 100,
-          'count' => 2,
-  ),
+$my_pow = function($times = 2)
+{
+    return function ($v) use (&$times)
+    {
+        return pow($v, $times);
+    };
+};
 
-  'banana' => array(
-          'price' => 80,
-          'count' => 5,
-  ),
+$cube = $my_pow(3);
 
-  'orange' => array(
-          'price' => 90,
-          'count' => 3,
-  ),
-);
 ?>
 
 <html>
@@ -30,8 +24,8 @@ $fruits = array(
         <title>Hello, World</title>
     </head>
     <body>
-        <?php foreach ($fruits as $name => $value) { ?>
-        <?php echo "$name は1つ{$value['price']}円で{$value['count']}個です",PHP_EOL; ?><br>
+        <?php for ($i = 1; $i<5; $i++) { ?>
+        <?php echo "$i^3 = " . $cube($i); ?><br>
         <?php } ?>
     </body>
 </html>
