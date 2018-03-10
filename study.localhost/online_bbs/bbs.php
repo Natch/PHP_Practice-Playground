@@ -12,9 +12,9 @@ $errors = array();
 $link = mysqli_connect('localhost', 'root', 'realize328');
 if(!$link) {
     die('DBに接続できません：' . mysqli_error($link));
-} else {
-    echo 'DB connect Success!!<br>';
 }
+
+echo 'DB connect Success in ' . mysqli_get_host_info($link);
 
 // DBを選択する
 mysqli_select_db($link, 'online_bbs');
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = null;
     if(!isset($_POST['name']) || '' === $_POST['name']) {
         $errors['name'] = '名前を入力してください';
-    } else if (strlen($POST['name']) > 40) {
+    } else if (strlen($_POST['name']) > 40) {
         $errors['name'] = '名前は40文字で入力してください';
     } else {
         $name = $_POST['name'];
