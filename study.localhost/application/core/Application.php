@@ -13,6 +13,8 @@ abstract class Application
     protected $response;
     protected $session;
     protected $db_manager;
+    protected $router;
+    protected $login_action = array();
 
     public function __construct($debug = false)
     {
@@ -28,7 +30,7 @@ abstract class Application
             error_reporting(-1);
         } else {
             $this->debug = false;
-            init_set('display_errors', 0);
+            ini_set('display_errors', 0);
         }
     }
 
@@ -55,7 +57,7 @@ abstract class Application
         return $this->request;
     }
 
-    public function Response() {
+    public function getResponse() {
         return $this->response;
     }
 
@@ -87,23 +89,26 @@ abstract class Application
         try {
             $params = $this->router->resolve($this->request->getPathInfo());
 
-            if ($params = false) {
+            if ($params == false) {
                 throw new HttpNotFoundException('No route found for '.$this->request->getPathInfo());
             }
 
             $controller = $params['controller'];
-            $action = $params['aciton'];
+            $action = $params['action'];
 
             $this->runAction($controller, $action, $params);
 
         } catch (HttpNotFoundException $e) {
             $this->render404Page($e);
+        } catch (UnauthorizedActionException $e) {
+            list($controller, $action) = $this->login_action;
+            $this->runAction($controller, $action);
         }
 
         $this->response->send();
     }
 
-    public function runAction($controller_name, $action, $params = array()) {
+    public function runAction($controller_name, $action, array $params = array()) {
         $controller_class = ucfirst($controller_name) . 'Controller';
         $controller = $this->findController($controller_class);
         if ($controller === false) {
