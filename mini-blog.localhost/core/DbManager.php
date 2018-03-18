@@ -37,7 +37,7 @@ class DbManager
         return $con;
     }
 
-    protected function connect($name, $params) {
+    public function connect($name, $params) {
         $params = array_merge(array(
             'dsn' => null,
             'user' => '',

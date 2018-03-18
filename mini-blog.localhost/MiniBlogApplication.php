@@ -9,12 +9,12 @@
 class MiniBlogApplication extends Application
 {
     protected $login_action = array('account', 'signin');
-    
+
     public function getRootDir() {
         return __DIR__;
     }
 
-    public function registerRoutes() {
+    protected function registerRoutes() {
         return array();
     }
 
